@@ -1,0 +1,25 @@
+## Task 2
+
+## find the ip address for the specific server.
+nslookup www.guvi.in
+
+## to check CPU performance for windows
+Get-Process | Sort-Object CPU -Descending
+Get-Counter '\Memory\Available MBytes'
+
+## to check CPU performance for Linux
+## for  CPU, memory, and process usage only
+top
+
+# establish connection between two nodes
+# for windows
+tracert  172.67.70.207
+# for linux
+traceroute 172.67.70.207
+
+
+## check port is open or not
+# for linux
+ss -turn | grep 9000
+# for windows
+Test-NetConnection -ComputerName www.guvi.com -Port 9000

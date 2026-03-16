@@ -1,0 +1,119 @@
+Microsoft Windows [Version 10.0.26200.7623]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Vishal>cd downloads
+
+C:\Users\Vishal\Downloads>ssh -i "DO-C-KEY.pem" ec2-user@ec2-3-80-71-136.compute-1.amazonaws.com
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+Last login: Sat Feb 28 02:54:31 2026 from 157.51.181.77
+[ec2-user@ip-172-31-29-35 ~]$ mkdir my_folder
+[ec2-user@ip-172-31-29-35 ~]$ ls
+my_folder
+[ec2-user@ip-172-31-29-35 ~]$ cd my_folder
+[ec2-user@ip-172-31-29-35 my_folder]$ ls
+[ec2-user@ip-172-31-29-35 my_folder]$ echo 'This sample text file' > my_file.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ ls
+my_file.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ cat my_file.txt
+This sample text file
+[ec2-user@ip-172-31-29-35 my_folder]$ echo 'This another sample text file' > another_file.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ ls
+another_file.txt  my_file.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ cat another_file.txt >> my_file.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ ls
+another_file.txt  my_file.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ cat my_file.txt
+This sample text file
+This another sample text file
+[ec2-user@ip-172-31-29-35 my_folder]$ touch file1.txt file2.txt file3.txt file4.txt file5.txt file6.txt file7.txt file8.txt file9.txt file10.txt file11.txt file12.txt file13.txt file14.txt file15.txt file16.txt file17.txt file18.
+txt file19.txt file20.txt
+-bash: txt: command not found
+[ec2-user@ip-172-31-29-35 my_folder]$ touch file1.txt file2.txt file3.txt file4.txt file5.txt file6.txt file7.txt file8.txt file9.txt file10.txt file11.txt file12.txt file13.txt file14.txt file15.txt file16.txt file17.txt file18.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ ls
+another_file.txt  file11.txt  file14.txt  file17.txt  file2.txt  file5.txt  file8.txt
+file1.txt         file12.txt  file15.txt  file18.     file3.txt  file6.txt  file9.txt
+file10.txt        file13.txt  file16.txt  file18.txt  file4.txt  file7.txt  my_file.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ rm file18.
+[ec2-user@ip-172-31-29-35 my_folder]$ ls
+another_file.txt  file10.txt  file12.txt  file14.txt  file16.txt  file18.txt  file3.txt  file5.txt  file7.txt  file9.txt
+file1.txt         file11.txt  file13.txt  file15.txt  file17.txt  file2.txt   file4.txt  file6.txt  file8.txt  my_file.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ touch file19.txt file20.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ ls
+another_file.txt  file10.txt  file12.txt  file14.txt  file16.txt  file18.txt  file2.txt   file3.txt  file5.txt  file7.txt  file9.txt
+file1.txt         file11.txt  file13.txt  file15.txt  file17.txt  file19.txt  file20.txt  file4.txt  file6.txt  file8.txt  my_file.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ ls -t1
+file19.txt
+file20.txt
+file1.txt
+file10.txt
+file11.txt
+file12.txt
+file13.txt
+file14.txt
+file15.txt
+file16.txt
+file17.txt
+file18.txt
+file2.txt
+file3.txt
+file4.txt
+file5.txt
+file6.txt
+file7.txt
+file8.txt
+file9.txt
+my_file.txt
+another_file.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ ls -t1 | head -n 5
+file19.txt
+file20.txt
+file1.txt
+file10.txt
+file11.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ ls -t
+file19.txt  file1.txt   file11.txt  file13.txt  file15.txt  file17.txt  file2.txt  file4.txt  file6.txt  file8.txt  my_file.txt
+file20.txt  file10.txt  file12.txt  file14.txt  file16.txt  file18.txt  file3.txt  file5.txt  file7.txt  file9.txt  another_file.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ ls -t | head -n 5
+file19.txt
+file20.txt
+file1.txt
+file10.txt
+file11.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ ls
+another_file.txt  file10.txt  file12.txt  file14.txt  file16.txt  file18.txt  file2.txt   file3.txt  file5.txt  file7.txt  file9.txt
+file1.txt         file11.txt  file13.txt  file15.txt  file17.txt  file19.txt  file20.txt  file4.txt  file6.txt  file8.txt  my_file.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ ls | head -n 5
+another_file.txt
+file1.txt
+file10.txt
+file11.txt
+file12.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ for file in *.txt | head -n 5; do mv -- "$file" "${file%.txt}.yml"; done
+-bash: syntax error near unexpected token `|'
+[ec2-user@ip-172-31-29-35 my_folder]$ for file | head -n 5 in *.txt; do mv -- "$file" "${file%.txt}.yml"; done
+-bash: syntax error near unexpected token `|'
+[ec2-user@ip-172-31-29-35 my_folder]$ for file in $(ls -t *.txt | head -n 5);do
+    mv -- "$file" "${file%.txt}.yml"
+done
+[ec2-user@ip-172-31-29-35 my_folder]$ ls | head -n 5
+another_file.txt
+file1.yml
+file10.yml
+file11.yml
+file12.txt
+[ec2-user@ip-172-31-29-35 my_folder]$ ls -t | head -n 5
+file19.yml
+file20.yml
+file1.yml
+file10.yml
+file11.yml
+[ec2-user@ip-172-31-29-35 my_folder]$
