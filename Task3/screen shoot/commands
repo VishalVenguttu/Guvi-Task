@@ -1,0 +1,9 @@
+## create a file 
+sudo touch /home/demo.tx
+## check the created file in the home directory
+ls -l /home
+## change the premission to specific file 
+sudo chmod 764 /home/demo.txt
+
+## after change the specific file premisssion 
+ls -l /home/demo.txt
