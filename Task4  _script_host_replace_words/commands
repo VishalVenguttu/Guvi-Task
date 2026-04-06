@@ -1,11 +1,6 @@
-#!/bin/bash
-
-#create a sample value &  print value
-
-N='vishal'
-echo ${N}
-echo 'The host name is'
-echo $HOSTNAME
+# Task 4 
+# 1. Capture HTTP response
+# Script
 
 #!/bin/bash
 
@@ -24,3 +19,8 @@ if [[ "$http_code" -eq 200 ]]; then
 else
    echo "Error: HTTP $http_code"
 fi
+
+# 2.Replace Words
+
+sed '5,${/welcome/s/give/learning/g}' ogfile.sh > outputfile.txt
+
