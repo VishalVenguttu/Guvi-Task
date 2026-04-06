@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#create a sample value &  print value
+
+N='vishal'
+echo ${N}
+echo 'The host name is'
+echo $HOSTNAME
+
+#!/bin/bash
+
+echo  'Guvi URL is:'
+url="https://example.com"
+
+echo ${url}
+
+# Use curl to fetch only the HTTP status code
+http_code=$(curl -s -o /dev/null -w "%{http_code}" "$url")
+
+echo
+
+if [[ "$http_code" -eq 200 ]]; then
+    echo "Success: HTTP $http_code"
+else
+
