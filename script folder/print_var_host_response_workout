@@ -22,4 +22,5 @@ echo
 if [[ "$http_code" -eq 200 ]]; then
     echo "Success: HTTP $http_code"
 else
-
+   echo "Error: HTTP $http_code"
+fi
