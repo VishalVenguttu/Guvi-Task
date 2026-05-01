@@ -1,0 +1,4 @@
+# VPC Public subnet
+
+public ip ---> http://54.245.61.217/old_html.html
+# VPC Private Subnet
