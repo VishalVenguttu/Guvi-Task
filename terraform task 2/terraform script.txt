@@ -1,0 +1,124 @@
+# Configure AWS providers for two regions
+provider "aws" {
+  alias  = "us_west"
+  region = "us-west-2"
+}
+
+provider "aws" {
+  alias  = "ap_south"
+  region = "ap-south-1"
+}
+
+# Security group for US West
+resource "aws_security_group" "nginx_sg_us_west" {
+  provider    = aws.us_west
+  name        = "nginx-sg-us-west"
+  description = "Allow HTTP and SSH"
+
+  ingress {
+    description = "HTTP"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+# Security group for AP South
+resource "aws_security_group" "nginx_sg_ap_south" {
+  provider    = aws.ap_south
+  name        = "nginx-sg-ap-south"
+  description = "Allow HTTP and SSH"
+
+  ingress {
+    description = "HTTP"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+# EC2 Instance in US West (Oregon)
+resource "aws_instance" "us_west_ec2" {
+  provider      = aws.us_west
+  ami           = "ami-096f5760b00bcd95c"
+  instance_type = "t3.micro"
+  key_name      = "devops1"
+  vpc_security_group_ids = [aws_security_group.nginx_sg_us_west.id]
+
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo apt update -y
+              sudo apt install nginx -y
+              sudo systemctl enable nginx
+              sudo systemctl start nginx
+              EOF
+
+  tags = {
+    Name = "EC2 Ngnix_1"
+  }
+}
+
+# EC2 Instance in AP South (Mumbai) Amazon ubuntu Linux machine
+resource "aws_instance" "ap_south_ec2" {
+  provider      = aws.ap_south
+  ami           = "ami-0ac7b260cf76d8865"
+  instance_type = "t3.micro"
+  key_name      = "mumbaiKey"
+  vpc_security_group_ids = [aws_security_group.nginx_sg_ap_south.id]
+
+ user_data = <<-EOF
+              #!/bin/bash
+              sudo dnf update -y
+              sudo dnf install nginx -y
+              sudo systemctl enable nginx
+              sudo systemctl start nginx
+              EOF
+
+
+  tags = {
+    Name = "Ec2 Ngnix_2"
+  }
+}
+
+# Output public IPs
+output "us_west_url" {
+  value = "http://${aws_instance.us_west_ec2.public_ip}"
+}
+
+output "ap_south_url" {
+  value = "http://${aws_instance.ap_south_ec2.public_ip}"
+}
+
+
