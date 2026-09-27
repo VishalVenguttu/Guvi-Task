@@ -1,0 +1,9 @@
+Repo URL: https://github.com/VishalVenguttu/guvi-project 
+--> check master branch for jenkinsfile,dockerfile,build.sh, deploy.sh, docker.yml.
+
+Web appliction Host URL: http://13.62.98.245:8081/
+
+Jenkins URL: http://13.62.98.245:8080/
+
+Monitor tool URL: http://13.62.98.245:3001/
+
