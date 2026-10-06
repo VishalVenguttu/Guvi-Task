@@ -1,0 +1,16 @@
+--> site url.
+http://a9492063b164d436da3d7713eb6d6f9c-6661784f70ca8ea3.elb.eu-north-1.amazonaws.com/
+
+---> Repo URL for Project 2 ( Refer main branch )
+https://github.com/VishalVenguttu/guvi-project-two
+
+--> script files (Avail in 'main' Repo)
+Jenkinsfile
+dockerfile
+k8s
+  delpoyment.yaml
+  service.yaml
+helm monitor script file
+
+---> monitor tool URL (grafana)
+http://16.171.34.112:31861/login
